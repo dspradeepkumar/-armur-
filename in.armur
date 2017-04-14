@@ -1,0 +1,146 @@
+package pack;
+
+class Patient<O> {
+	//object ecgRecord : [?][this]mHealthDevice<this>;
+	//@policy(beta)
+	function getMedicalHistory() : [?][O] Strings
+	{		
+		object history : MedicalRecord<this>;
+		return declassify history;
+	    //object ecgRecord : [?][this]mHealthDevice<this>;
+		//return declassify ecgRecord.getHistory();
+	}
+	
+	function someFunction(history : MedicalRecord) : _
+	{
+	}
+	function someFunction1() : _
+	{
+		object array = [2,3,4,5,6,7];
+		array.append(8);
+	}
+}
+
+class Prescription<O> {	
+	
+	function getPrescription() : [?][O] Strings
+	{
+		//..code to return prescription values.
+	}
+	function setPrescription(value : Strings) : [?][O] Strings
+	{
+		//..code to persist.
+	}
+}
+
+class Doctor<O> {
+	
+	function analyse(history : MedicalRecord) : [?][O] Strings
+	{
+		//..code to analyse.
+	}
+	
+	function changePrescription(prescription : Prescription) : [?][O] Strings
+	{
+		//..code to prescribe new medicine
+	}
+}
+
+class Snooper<O> {
+	
+	function trackMedicalHistory(history : Strings) : [?][O] Strings
+	{
+		//..track medical history - maliciously
+	}
+	function changePresctiption(prescription : Prescription) : [?][O] Strings
+	{
+		//..code to change prescription maliciously
+	}
+}
+
+class MedicalRecord<O> {
+	function getPatientHistory() : [?][O] Strings
+	{
+		object patientHistory : Strings<this>;
+		return declassify patientHistory;
+	}
+	function setPatientHistory() : _
+	{		
+	}
+	function askPermissionToOverride():_ {
+	}
+}
+
+class mHealthDevice<Q> {
+	
+	function getHistory() : [?][Q] MedicalRecord
+	{
+		object history : MedicalRecord<this>;
+		return declassify history;
+	}
+}
+
+policy alpha {}
+
+policy alicepolicy {
+	@canread:
+	Alice neighbours Eve;
+	//Alice neighbours Eve;	
+}
+
+policy gamma {
+	@canalias:
+	Eve neighbours Bob;
+}
+
+class Client<world>
+{			
+	function main(args : Array(Strings)) : _
+	{		
+		object matrix : Matrix<world>(2,3,"7 8 9 10 11 12"); //2 rows, 3 cols, values
+		object matrix1 = |4, 3, "1 2 3 4 5 6 7 8 9 10 11 12"|;
+		object array = [2,3,4,5,6,7];
+		
+		matrix.transposition();
+		Console.print("< Print Matrix >");
+		matrix.print();
+		Console.print("< Print Matrix1 >");
+		matrix1.print();
+		Console.print("< Creating List >");
+		object list : Lists(2,3,4,5,6,7);
+		list.size();
+		list.print();
+		
+		object Eve : Patient<world>;
+		Eve.someFunction1();
+		
+		
+		
+		//object str = "hello world";
+		//object numbers = 10I;
+		//object real = 10.21D;
+		//object long = 12345678910L;
+		//object complex = (3+4j); //3+4j
+
+		
+		//@policy(alicepolicy)
+		object Alice : Patient<world>;		
+		object mRecord : MedicalRecord;
+		mRecord = Alice.getMedicalHistory();
+		
+		//Alice.someFunction(mRecord);
+		//Bob.someFunction(mRecord);
+		
+		//Alice = Eve;
+		//Eve.someFunction(mRecord);
+		
+		//Eve = Bob;
+		//Bob = Alice;
+		
+		//Alice.someFunction(mRecord);
+		//Eve.someFunction(mRecord);
+				
+		//object mRecord1 : [?][this] MedicalRecord;
+		//mRecord1 = mRecord;
+	}
+}
