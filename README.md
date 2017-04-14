@@ -1,13 +1,13 @@
 # -armur-
 
-#(ARMUR).
+# (ARMUR).
 
-##How to run (armur)?
+## How to run (armur)?
 
-##From Jar:
+## From Jar:
 	>> java -jar armur.jar <input_file> <main_class>
 	
-##Example:
+## Example:
 	>> java -jar armur.jar in.armur Client
   
-# (Details - Under Construction)
+### (Details - Under Construction)
