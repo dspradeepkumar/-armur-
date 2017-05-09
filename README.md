@@ -1,8 +1,8 @@
-# -armur-
+# -(ar)(mu)(r) of gods-
 
-# (ARMUR).
+# (AR)(MU)(R)
 
-## How to run (armur)?
+## How to run (ar)(mu)(r)?
 
 ## From Jar:
 	>> java -jar armur.jar <input_file> <main_class>
