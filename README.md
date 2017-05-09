@@ -1,8 +1,6 @@
-# -(ar)(mu)(r) of gods-
+# -(AR)(MU)(R) of gods-
 
-# (AR)(MU)(R)
-#
-#
+##
 
 ## How to run (ar)(mu)(r)?
 
