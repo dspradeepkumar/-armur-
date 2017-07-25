@@ -1,8 +1,6 @@
-# - of gods-
-
 ##
 
-## How to run -?
+## How to run - ?
 
 ## From Jar:
 	>> java -jar armur.jar <input_file> <main_class>
